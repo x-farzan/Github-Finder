@@ -2,8 +2,8 @@ import React, { createContext, useContext, useState } from "react";
 import Button from "./Button";
 import DisplayProfileCards from "./DisplayProfileCards";
 
-export const ProfileContext = createContext();
-export const RepoContext = createContext();
+export const ProfileContext = createContext()
+export const RepoContext = createContext()
 
 const SearchBar = () => {
   let [profile, setProfile] = useState();
@@ -26,10 +26,12 @@ const SearchBar = () => {
     );
     const profile = await profileResponse.json();
     setProfile(profile);
-    console.log(`profile ------ `, profile);
     const repos = await reposResponse.json();
     setRepos(repos);
-    console.log(`repos --------- `, repos);
+  };
+
+  const clearGlobalState = () => {
+    setProfile();
   };
 
   return (
@@ -43,13 +45,25 @@ const SearchBar = () => {
         <Button buttonName="Submit" buttonType="submit" />
       </form>
 
-      {profile ? (
-        <ProfileContext.Provider value={profile}>
-          <RepoContext.Provider value={repos}>
-            <DisplayProfileCards />
-          </RepoContext.Provider>
-        </ProfileContext.Provider>
-      ) : null}
+      <div>
+        {profile ? (
+          <button
+            className="rounded border-2 border-gray-900 my-2 px-12 py-2 bg-red-600 text-white"
+            onClick={clearGlobalState}
+          >
+            Clear All
+          </button>
+        ) : null}
+      </div>
+      <div>
+        {profile ? (
+          <ProfileContext.Provider value={profile}>
+            <RepoContext.Provider value={repos}>
+              <DisplayProfileCards />
+            </RepoContext.Provider>
+          </ProfileContext.Provider>
+        ) : null}
+      </div>
     </div>
   );
 };
