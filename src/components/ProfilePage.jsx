@@ -8,11 +8,8 @@ const ProfilePage = () => {
 
   return (
     <div>
-      <div className="grid grid-cols-3 relative">
-        <div>{console.log(`profile ----- `, profile)}</div>
-        <div>{console.log(`repos ----- `, repo)}</div>
-
-        <RecentRepos repos={repo} />
+      <div >
+        <RecentRepos repos={repo} profile={profile}/>
       </div>
     </div>
   );

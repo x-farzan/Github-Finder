@@ -2,8 +2,8 @@ import React, { createContext, useContext, useState } from "react";
 import Button from "./Button";
 import DisplayProfileCards from "./DisplayProfileCards";
 
-export const ProfileContext = createContext()
-export const RepoContext = createContext()
+export const ProfileContext = createContext();
+export const RepoContext = createContext();
 
 const SearchBar = () => {
   let [profile, setProfile] = useState();
